@@ -10,8 +10,8 @@ function Post({ username, caption, imageUrl}) {
                 <h3>{username}</h3>
             </div>
             
-            <img className="post__image" src="https://images.dailyhive.com/20170827090910/lake-louise-alberta.jpg" alt=""/>
-            <h4 className="post__text"><strong>Ahmed</strong>: caption</h4>
+            <img className="post__image" src={imageUrl} alt=""/>
+            <h4 className="post__text"><strong>{username}</strong>: {caption} </h4>
             
         </div>
     )
