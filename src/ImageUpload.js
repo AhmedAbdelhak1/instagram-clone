@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { db, storage } from './firebase';
 import firebase from "firebase";
 
+
 function ImageUpload({username}) {
     const [image, setImage] = useState('');
     const [progress, setProgress] = useState(0);
@@ -30,7 +31,7 @@ function ImageUpload({username}) {
             },
             ()=>{
                 storage
-                .ref('images')
+                .ref("images")
                 .child(image.name)
                 .getDownloadURL()
                 .then(url =>{
@@ -54,7 +55,7 @@ function ImageUpload({username}) {
     return (
         <div>
             <progress value={progress} max="100" />
-            <input type="text" placeholder='Enter your Caption right here' onChange={event => setCaption(event.target.value)} value={caption}></input>
+            <input type="text" placeholder='Enter your Caption right here' onChange={event =>setCaption(event.target.value)} value={caption}></input>
             <input type="file" onChange={handleChange} />
             <Button onClick={handleUpload} > 
                 Upload
