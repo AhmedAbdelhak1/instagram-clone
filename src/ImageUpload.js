@@ -5,7 +5,7 @@ import firebase from "firebase";
 
 
 function ImageUpload({username}) {
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);
     const [caption, setCaption] = useState('');
 
@@ -16,7 +16,7 @@ function ImageUpload({username}) {
     }
 
     const handleUpload = ()=>{
-        const uploadTask = storage.ref(`image/${image.name}`).put(image);
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",
             (snapshot)=>{
