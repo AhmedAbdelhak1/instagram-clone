@@ -93,11 +93,7 @@ useEffect(() => {
   return (
     <div className="app">
 
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>Sorry you need to log in to upload</h3>
-      )}
+     
 
       
 
@@ -148,7 +144,6 @@ useEffect(() => {
       <div className="app__header">
       <img className="app__headerImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/800px-Instagram_logo.svg.png" alt=""/>
 
-      </div>
       { user ? (
           <Button onClick={()=> auth.signOut()}>Logout</Button>
        ) : (
@@ -157,12 +152,20 @@ useEffect(() => {
           <Button onClick={()=> setOpen(true)}>Sign up</Button>
         </div>
        )}
+      </div>
+     
      
       <h1>Instagram clone with react!!!</h1>
 
     {posts.map( ({id, post}) =>( 
       <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
     ))}
+
+    {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>Sorry you need to log in to upload</h3>
+      )}
 
      
       
