@@ -15,7 +15,7 @@ function Post({ postId,username, caption, imageUrl}) {
             .collection("posts")
             .doc(postId)
             .collection("comments")
-            .onsnapshot((snapshot =>{
+            .onSnapshot((snapshot =>{
                 setComments(snapshot.docs.map(doc =>doc.data()));
             }));
         }

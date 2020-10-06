@@ -28,6 +28,9 @@
 }
 .post__input{
     float: 1;
+    border: none;
+    padding: 10px;
+    border-top: 1px solid lightgray;
 }
 .post__button{
     flex: 0;
