@@ -11,6 +11,9 @@
   width: 80px;
 }
 .app__header{
+  position: sticky;
+  top: 0px;
+  z-index: 1;
   padding: 5px;
   background-color: white;
   border-bottom: 1px solid lightgray;

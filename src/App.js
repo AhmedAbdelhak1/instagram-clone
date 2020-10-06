@@ -159,7 +159,7 @@ useEffect(() => {
       <div className="app__posts">
         <div className="app__postsLeft">
           {posts.map( ({id, post}) =>( 
-          <Post key={id} postId={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+          <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} />
           ))}
          </div>
       
