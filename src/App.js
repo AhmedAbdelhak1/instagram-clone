@@ -7,6 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
 import InstagramEmbed from 'react-instagram-embed';
+import axios from './axios';
 
 
 function getModalStyle() {
@@ -63,13 +64,17 @@ useEffect(() => {
 
 
   useEffect(() =>{
-    db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map(doc =>({
-        id: doc.id,
-        post: doc.data()
-      }) ));
+   const fetchPost = async () => 
+    await axios.get('/sync').then(response =>{
+     console.log(response);
+     setPosts(response.data());
     })
+   fetchPost();
   },[]);
+  console.log("posts are...", posts);
+  posts.forEach(post =>{
+    console.log('post>>>>>', post)
+  })
 
   const signUp = (event) =>{
       event.preventDefault();
@@ -158,8 +163,8 @@ useEffect(() => {
      
       <div className="app__posts">
         <div className="app__postsLeft">
-          {posts.map( ({id, post}) =>( 
-          <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} />
+          {posts.map( (post) =>( 
+          <Post key={post._id} postId={post._id} username={post.user} user={user} caption={post.caption} imageUrl={post.image} />
           ))}
          </div>
       
