@@ -8,6 +8,7 @@ import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
 import InstagramEmbed from 'react-instagram-embed';
 import axios from './axios';
+import Pusher from 'pusher-js';
 
 
 function getModalStyle() {
@@ -60,16 +61,28 @@ useEffect(() => {
   }
 }, [user, username]);
 
+  const fetchPosts = async () => 
+    await axios.get('/sync').then(response =>{
+    console.log(response);
+    setPosts(response.data);
+    })
 
 
+  useEffect(()=>{
+    const pusher = new Pusher('814a0ff59094bccea5eb', {
+      cluster: 'eu'
+    });
+
+    const channel = pusher.subscribe('posts');
+    channel.bind('inserted', (data)=>{
+      console.log('data recived', data)
+      fetchPosts();
+    });
+  },[])
 
   useEffect(() =>{
-   const fetchPost = async () => 
-    await axios.get('/sync').then(response =>{
-     console.log(response);
-     setPosts(response.data());
-    })
-   fetchPost();
+   
+   fetchPosts();
   },[]);
   console.log("posts are...", posts);
   posts.forEach(post =>{
